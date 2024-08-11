@@ -70,6 +70,16 @@ impl WindowsPrinter {
             );
             let sliced = slice::from_raw_parts(buffer.as_ptr() as *const PRINTER_INFO_4W, returned as usize);
 
+            // todo Implement this so that we can check if a printer is on or off elsewhere
+            // Prints the status of the printer 
+            // for info in sliced {
+            //     if info.Attributes & PRINTER_ATTRIBUTE_WORK_OFFLINE != 0 {
+            //         println!("Printer is offline");
+            //     } else {
+            //         println!("Printer is online");
+            //     }
+            // }
+
             let printers = sliced
                 .iter()
                 .map(|info| WindowsPrinter::new(info.pPrinterName))
